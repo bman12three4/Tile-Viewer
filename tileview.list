@@ -1,0 +1,399 @@
+ca65 V2.17 - Git 644d623
+Main file   : src\tiles.asm
+Current file: src\tiles.asm
+
+000000r 1               ;	tiles.asm
+000000r 1               ;
+000000r 1               ; The tiles file stores all of the different tile and item types.
+000000r 1               ; The TILES location stores the locations of all of the tile types.
+000000r 1               ; The ITEMS location stores the location of all of the item types.
+000000r 1               ;
+000000r 1               ; Currently items are not implemented yet so it is only tiles right now.
+000000r 1               
+000000r 1               .export TILES
+000000r 1               .export ITEMS
+000000r 1               
+000000r 1               ; This is the tile section. Each tile is 14x16, which translates to 4 bytes x 16 lines.
+000000r 1               ; Most of these were generated with a processing program I wrote which allows you to
+000000r 1               ; draw on the screen and then export that as hexadecimal data.
+000000r 1               ; Each time a new tile is created, it's label is added to the TILES section to be
+000000r 1               ; referenced to in the world array and drawn in the drawing loop.
+000000r 1               
+000000r 1               TILES:	; A list of all of them is in the .inc file.
+000000r 1  rr rr rr rr  .word GRASS, PLAYER
+000004r 1  rr rr rr rr  .word INSERTER1_1, INSERTER1_2, INSERTER1_3
+000008r 1  rr rr        
+00000Ar 1  rr rr rr rr  .word ASSEMBLER1_1, ASSEMBLER1_2, ASSEMBLER1_3
+00000Er 1  rr rr        
+000010r 1  rr rr rr rr  .word CONVEYOR1_1, CONVEYOR1_2, CONVEYOR1_3
+000014r 1  rr rr        
+000016r 1  rr rr rr rr  .word CONVEYOR2_1, CONVEYOR2_2, CONVEYOR2_3
+00001Ar 1  rr rr        
+00001Cr 1  rr rr rr rr  .word TEST1, TEST2
+000020r 1               
+000020r 1               
+000020r 1               GRASS:
+000020r 1  6A 55 2A 57  .byte $6a, $55, $2a, $57
+000024r 1  6B 55 2A 57  .byte $6b, $55, $2a, $57
+000028r 1  2E 55 3A 55  .byte $2e, $55, $3a, $55
+00002Cr 1  2E 55 2E 55  .byte $2e, $55, $2e, $55
+000030r 1  2E 55 2E 55  .byte $2e, $55, $2e, $55
+000034r 1  2A 55 2E 55  .byte $2a, $55, $2e, $55
+000038r 1  2A 55 2A 55  .byte $2a, $55, $2a, $55
+00003Cr 1  2B 57 2A 55  .byte $2b, $57, $2a, $55
+000040r 1  2A 57 2A 75  .byte $2a, $57, $2a, $75
+000044r 1  3A 5F 2A 75  .byte $3a, $5f, $2a, $75
+000048r 1  2E 5D 3A 75  .byte $2e, $5d, $3a, $75
+00004Cr 1  2E 5D 6A 55  .byte $2e, $5d, $6a, $55
+000050r 1  2E 55 6A 55  .byte $2e, $55, $6a, $55
+000054r 1  2A 55 6A 55  .byte $2a, $55, $6a, $55
+000058r 1  2A 57 2A 55  .byte $2a, $57, $2a, $55
+00005Cr 1  6A 55 2A 5D  .byte $6a, $55, $2a, $5d
+000060r 1               
+000060r 1               PLAYER:
+000060r 1  80 80 81 80  .byte $80, $80, $81, $80
+000064r 1  80 A0 87 80  .byte $80, $a0, $87, $80
+000068r 1  80 A0 87 80  .byte $80, $a0, $87, $80
+00006Cr 1  80 A0 87 80  .byte $80, $a0, $87, $80
+000070r 1  80 80 81 80  .byte $80, $80, $81, $80
+000074r 1  80 A0 85 80  .byte $80, $a0, $85, $80
+000078r 1  80 88 91 80  .byte $80, $88, $91, $80
+00007Cr 1  80 84 81 81  .byte $80, $84, $81, $81
+000080r 1  80 80 81 80  .byte $80, $80, $81, $80
+000084r 1  80 80 81 80  .byte $80, $80, $81, $80
+000088r 1  80 A0 84 80  .byte $80, $a0, $84, $80
+00008Cr 1  80 88 90 80  .byte $80, $88, $90, $80
+000090r 1  80 88 90 80  .byte $80, $88, $90, $80
+000094r 1  80 88 90 80  .byte $80, $88, $90, $80
+000098r 1  80 90 A0 80  .byte $80, $90, $a0, $80
+00009Cr 1  80 90 A0 80  .byte $80, $90, $a0, $80
+0000A0r 1               
+0000A0r 1               CONVEYOR1_1:
+0000A0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000A4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000A8r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000ACr 1  00 00 00 00  .byte $0, $0, $0, $0
+0000B0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000B4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000B8r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000BCr 1  00 00 00 00  .byte $0, $0, $0, $0
+0000C0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000C4r 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+0000C8r 1  A0 D5 A0 D5  .byte $a0, $d5, $a0, $d5
+0000CCr 1  82 D5 82 D5  .byte $82, $d5, $82, $d5
+0000D0r 1  8A D4 8A D4  .byte $8a, $d4, $8a, $d4
+0000D4r 1  82 D5 82 D5  .byte $82, $d5, $82, $d5
+0000D8r 1  A0 D5 A0 D5  .byte $a0, $d5, $a0, $d5
+0000DCr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+0000E0r 1               
+0000E0r 1               CONVEYOR1_2:
+0000E0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000E4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000E8r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000ECr 1  00 00 00 00  .byte $0, $0, $0, $0
+0000F0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000F4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000F8r 1  00 00 00 00  .byte $0, $0, $0, $0
+0000FCr 1  00 00 00 00  .byte $0, $0, $0, $0
+000100r 1  00 00 00 00  .byte $0, $0, $0, $0
+000104r 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+000108r 1  8A D4 8A D4  .byte $8a, $d4, $8a, $d4
+00010Cr 1  AA D0 AA D0  .byte $aa, $d0, $aa, $d0
+000110r 1  AA C1 AA C1  .byte $aa, $c1, $aa, $c1
+000114r 1  AA D0 AA D0  .byte $aa, $d0, $aa, $d0
+000118r 1  8A D4 8A D4  .byte $8a, $d4, $8a, $d4
+00011Cr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+000120r 1               
+000120r 1               CONVEYOR1_3:
+000120r 1  00 00 00 00  .byte $0, $0, $0, $0
+000124r 1  00 00 00 00  .byte $0, $0, $0, $0
+000128r 1  00 00 00 00  .byte $0, $0, $0, $0
+00012Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000130r 1  00 00 00 00  .byte $0, $0, $0, $0
+000134r 1  00 00 00 00  .byte $0, $0, $0, $0
+000138r 1  00 00 00 00  .byte $0, $0, $0, $0
+00013Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000140r 1  00 00 00 00  .byte $0, $0, $0, $0
+000144r 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+000148r 1  AA C1 AA C1  .byte $aa, $c1, $aa, $c1
+00014Cr 1  AA 85 AA 85  .byte $aa, $85, $aa, $85
+000150r 1  A8 95 A8 95  .byte $a8, $95, $a8, $95
+000154r 1  AA 85 AA 85  .byte $aa, $85, $aa, $85
+000158r 1  AA C1 AA C1  .byte $aa, $c1, $aa, $c1
+00015Cr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+000160r 1               
+000160r 1               CONVEYOR2_1:
+000160r 1  80 80 80 80  .byte $80, $80, $80, $80
+000164r 1  80 80 80 80  .byte $80, $80, $80, $80
+000168r 1  80 80 80 80  .byte $80, $80, $80, $80
+00016Cr 1  80 80 80 80  .byte $80, $80, $80, $80
+000170r 1  80 80 80 80  .byte $80, $80, $80, $80
+000174r 1  80 80 80 80  .byte $80, $80, $80, $80
+000178r 1  80 80 80 80  .byte $80, $80, $80, $80
+00017Cr 1  80 80 80 80  .byte $80, $80, $80, $80
+000180r 1  80 80 80 80  .byte $80, $80, $80, $80
+000184r 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+000188r 1  AA 85 AA 85  .byte $aa, $85, $aa, $85
+00018Cr 1  AA C1 AA C1  .byte $aa, $c1, $aa, $c1
+000190r 1  AA D0 AA D0  .byte $aa, $d0, $aa, $d0
+000194r 1  AA C1 AA C1  .byte $aa, $c1, $aa, $c1
+000198r 1  AA 85 AA 85  .byte $aa, $85, $aa, $85
+00019Cr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+0001A0r 1               
+0001A0r 1               CONVEYOR2_2:
+0001A0r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001A4r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001A8r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001ACr 1  80 80 80 80  .byte $80, $80, $80, $80
+0001B0r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001B4r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001B8r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001BCr 1  80 80 80 80  .byte $80, $80, $80, $80
+0001C0r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001C4r 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+0001C8r 1  AA D0 AA D0  .byte $aa, $d0, $aa, $d0
+0001CCr 1  8A D4 8A D4  .byte $8a, $d4, $8a, $d4
+0001D0r 1  82 D5 82 D5  .byte $82, $d5, $82, $d5
+0001D4r 1  8A D4 8A D4  .byte $8a, $d4, $8a, $d4
+0001D8r 1  AA D0 AA D0  .byte $aa, $d0, $aa, $d0
+0001DCr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+0001E0r 1               
+0001E0r 1               CONVEYOR2_3:
+0001E0r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001E4r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001E8r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001ECr 1  80 80 80 80  .byte $80, $80, $80, $80
+0001F0r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001F4r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001F8r 1  80 80 80 80  .byte $80, $80, $80, $80
+0001FCr 1  80 80 80 80  .byte $80, $80, $80, $80
+000200r 1  80 80 80 80  .byte $80, $80, $80, $80
+000204r 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+000208r 1  82 D5 82 D5  .byte $82, $d5, $82, $d5
+00020Cr 1  A0 D5 A0 D5  .byte $a0, $d5, $a0, $d5
+000210r 1  A8 95 A8 95  .byte $a8, $95, $a8, $95
+000214r 1  A0 D5 A0 D5  .byte $a0, $d5, $a0, $d5
+000218r 1  82 D5 82 D5  .byte $82, $d5, $82, $d5
+00021Cr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+000220r 1               
+000220r 1               INSERTER1_1:
+000220r 1  80 84 A0 80  .byte $80, $84, $a0, $80
+000224r 1  80 84 A0 80  .byte $80, $84, $a0, $80
+000228r 1  80 84 A0 80  .byte $80, $84, $a0, $80
+00022Cr 1  80 84 A0 80  .byte $80, $84, $a0, $80
+000230r 1  80 94 A8 80  .byte $80, $94, $a8, $80
+000234r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+000238r 1  80 C0 82 80  .byte $80, $c0, $82, $80
+00023Cr 1  80 C0 82 80  .byte $80, $c0, $82, $80
+000240r 1  80 C0 82 80  .byte $80, $c0, $82, $80
+000244r 1  80 C0 82 80  .byte $80, $c0, $82, $80
+000248r 1  80 C0 82 80  .byte $80, $c0, $82, $80
+00024Cr 1  80 C0 82 80  .byte $80, $c0, $82, $80
+000250r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+000254r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+000258r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+00025Cr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+000260r 1               
+000260r 1               INSERTER1_2:
+000260r 1  80 80 80 80  .byte $80, $80, $80, $80
+000264r 1  80 80 80 80  .byte $80, $80, $80, $80
+000268r 1  80 80 80 80  .byte $80, $80, $80, $80
+00026Cr 1  80 80 80 80  .byte $80, $80, $80, $80
+000270r 1  80 80 80 80  .byte $80, $80, $80, $80
+000274r 1  AA 80 80 80  .byte $aa, $80, $80, $80
+000278r 1  A0 81 80 80  .byte $a0, $81, $80, $80
+00027Cr 1  80 D5 82 80  .byte $80, $d5, $82, $80
+000280r 1  80 D5 82 80  .byte $80, $d5, $82, $80
+000284r 1  A0 C1 82 80  .byte $a0, $c1, $82, $80
+000288r 1  AA C0 82 80  .byte $aa, $c0, $82, $80
+00028Cr 1  80 C0 82 80  .byte $80, $c0, $82, $80
+000290r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+000294r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+000298r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+00029Cr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+0002A0r 1               
+0002A0r 1               INSERTER1_3:
+0002A0r 1  80 80 80 80  .byte $80, $80, $80, $80
+0002A4r 1  80 80 80 80  .byte $80, $80, $80, $80
+0002A8r 1  80 80 80 80  .byte $80, $80, $80, $80
+0002ACr 1  80 80 80 80  .byte $80, $80, $80, $80
+0002B0r 1  80 80 80 80  .byte $80, $80, $80, $80
+0002B4r 1  80 80 80 D4  .byte $80, $80, $80, $d4
+0002B8r 1  80 80 80 85  .byte $80, $80, $80, $85
+0002BCr 1  80 C0 AA 81  .byte $80, $c0, $aa, $81
+0002C0r 1  80 C0 AA 81  .byte $80, $c0, $aa, $81
+0002C4r 1  80 C0 82 85  .byte $80, $c0, $82, $85
+0002C8r 1  80 C0 82 D4  .byte $80, $c0, $82, $d4
+0002CCr 1  80 C0 82 80  .byte $80, $c0, $82, $80
+0002D0r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+0002D4r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+0002D8r 1  80 D0 8A 80  .byte $80, $d0, $8a, $80
+0002DCr 1  AA D5 AA D5  .byte $aa, $d5, $aa, $d5
+0002E0r 1               
+0002E0r 1               ASSEMBLER1_1:
+0002E0r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+0002E4r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+0002E8r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+0002ECr 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+0002F0r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+0002F4r 1  F5 FF AB AD  .byte $f5, $ff, $ab, $ad
+0002F8r 1  F5 FD FB AD  .byte $f5, $fd, $fb, $ad
+0002FCr 1  F5 FD FB AD  .byte $f5, $fd, $fb, $ad
+000300r 1  A5 D5 FB AD  .byte $a5, $d5, $fb, $ad
+000304r 1  F5 FD FB AD  .byte $f5, $fd, $fb, $ad
+000308r 1  F5 FD AB AD  .byte $f5, $fd, $ab, $ad
+00030Cr 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000310r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000314r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000318r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+00031Cr 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+000320r 1               
+000320r 1               ASSEMBLER1_2:
+000320r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+000324r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+000328r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+00032Cr 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000330r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000334r 1  F5 FF AB AD  .byte $f5, $ff, $ab, $ad
+000338r 1  F5 F7 EB AD  .byte $f5, $f7, $eb, $ad
+00033Cr 1  A5 F7 EB AD  .byte $a5, $f7, $eb, $ad
+000340r 1  F5 FD EB AD  .byte $f5, $fd, $eb, $ad
+000344r 1  B5 D7 EB AD  .byte $b5, $d7, $eb, $ad
+000348r 1  B5 FF AB AD  .byte $b5, $ff, $ab, $ad
+00034Cr 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000350r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000354r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000358r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+00035Cr 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+000360r 1               
+000360r 1               ASSEMBLER1_3:
+000360r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+000364r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+000368r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+00036Cr 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000370r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000374r 1  F5 FF AB AD  .byte $f5, $ff, $ab, $ad
+000378r 1  B5 FF BB AD  .byte $b5, $ff, $bb, $ad
+00037Cr 1  B5 D7 BB AD  .byte $b5, $d7, $bb, $ad
+000380r 1  F5 FD BB AD  .byte $f5, $fd, $bb, $ad
+000384r 1  A5 F7 BB AD  .byte $a5, $f7, $bb, $ad
+000388r 1  F5 F7 AB AD  .byte $f5, $f7, $ab, $ad
+00038Cr 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000390r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000394r 1  F5 FF FF AF  .byte $f5, $ff, $ff, $af
+000398r 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+00039Cr 1  D5 AA D5 AA  .byte $d5, $aa, $d5, $aa
+0003A0r 1               
+0003A0r 1               TEST1:
+0003A0r 1  7F 3F FD FF  .byte $7f, $3f, $fd, $ff
+0003A4r 1  7F 5F FE FF  .byte $7f, $5f, $fe, $ff
+0003A8r 1  FF DF 7E 7F  .byte $ff, $df, $7e, $7f
+0003ACr 1  FF BF 7D 7F  .byte $ff, $bf, $7d, $7f
+0003B0r 1  80 C0 02 00  .byte $80, $c0, $2, $0
+0003B4r 1  80 A0 01 00  .byte $80, $a0, $1, $0
+0003B8r 1  00 40 82 80  .byte $0, $40, $82, $80
+0003BCr 1  00 20 81 80  .byte $0, $20, $81, $80
+0003C0r 1  00 60 82 80  .byte $0, $60, $82, $80
+0003C4r 1  00 60 81 80  .byte $0, $60, $81, $80
+0003C8r 1  00 60 02 00  .byte $0, $60, $2, $0
+0003CCr 1  00 60 01 00  .byte $0, $60, $1, $0
+0003D0r 1  80 E0 82 80  .byte $80, $e0, $82, $80
+0003D4r 1  80 E0 81 80  .byte $80, $e0, $81, $80
+0003D8r 1  80 E0 02 00  .byte $80, $e0, $2, $0
+0003DCr 1  80 E0 01 00  .byte $80, $e0, $1, $0
+0003E0r 1               
+0003E0r 1               TEST2:
+0003E0r 1  55 2A 2A 55  .byte $55, $2a, $2a, $55
+0003E4r 1  AA D5 D5 AA  .byte $aa, $d5, $d5, $aa
+0003E8r 1  2A 55 D5 AA  .byte $2a, $55, $d5, $aa
+0003ECr 1  2A 55 AA D5  .byte $2a, $55, $aa, $d5
+0003F0r 1  2A 55 AA D5  .byte $2a, $55, $aa, $d5
+0003F4r 1  AA D5 2A 55  .byte $aa, $d5, $2a, $55
+0003F8r 1  AA D5 2A 55  .byte $aa, $d5, $2a, $55
+0003FCr 1  55 2A D5 AA  .byte $55, $2a, $d5, $aa
+000400r 1  55 2A D5 AA  .byte $55, $2a, $d5, $aa
+000404r 1  D5 AA 2A 55  .byte $d5, $aa, $2a, $55
+000408r 1  D5 AA 2A 55  .byte $d5, $aa, $2a, $55
+00040Cr 1  AA D5 55 2A  .byte $aa, $d5, $55, $2a
+000410r 1  AA D5 55 2A  .byte $aa, $d5, $55, $2a
+000414r 1  00 00 00 00  .byte $0, $0, $0, $0
+000418r 1  00 00 00 00  .byte $0, $0, $0, $0
+00041Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000420r 1               
+000420r 1               ITEMS:
+000420r 1  rr rr        .word BLANK
+000422r 1  rr rr rr rr  .word GREEN_ORE_1, GREEN_ORE_2, GREEN_ORE_3
+000426r 1  rr rr        
+000428r 1               
+000428r 1               BLANK:
+000428r 1  00 00 00 00  .byte $0, $0, $0, $0
+00042Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000430r 1  00 00 00 00  .byte $0, $0, $0, $0
+000434r 1  00 00 00 00  .byte $0, $0, $0, $0
+000438r 1  00 00 00 00  .byte $0, $0, $0, $0
+00043Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000440r 1  00 00 00 00  .byte $0, $0, $0, $0
+000444r 1  00 00 00 00  .byte $0, $0, $0, $0
+000448r 1  00 00 00 00  .byte $0, $0, $0, $0
+00044Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000450r 1  00 00 00 00  .byte $0, $0, $0, $0
+000454r 1  00 00 00 00  .byte $0, $0, $0, $0
+000458r 1  00 00 00 00  .byte $0, $0, $0, $0
+00045Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000460r 1  00 00 00 00  .byte $0, $0, $0, $0
+000464r 1  00 00 00 00  .byte $0, $0, $0, $0
+000468r 1               
+000468r 1               GREEN_ORE_1:
+000468r 1  00 00 00 00  .byte $0, $0, $0, $0
+00046Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000470r 1  00 00 00 00  .byte $0, $0, $0, $0
+000474r 1  00 00 00 00  .byte $0, $0, $0, $0
+000478r 1  28 01 00 00  .byte $28, $1, $0, $0
+00047Cr 1  3E 01 00 00  .byte $3e, $1, $0, $0
+000480r 1  7A 05 00 00  .byte $7a, $5, $0, $0
+000484r 1  6E 05 00 00  .byte $6e, $5, $0, $0
+000488r 1  00 00 00 00  .byte $0, $0, $0, $0
+00048Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000490r 1  00 00 00 00  .byte $0, $0, $0, $0
+000494r 1  00 00 00 00  .byte $0, $0, $0, $0
+000498r 1  00 00 00 00  .byte $0, $0, $0, $0
+00049Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+0004A0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004A4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004A8r 1               
+0004A8r 1               GREEN_ORE_2:
+0004A8r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004ACr 1  00 00 00 00  .byte $0, $0, $0, $0
+0004B0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004B4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004B8r 1  00 40 0A 00  .byte $0, $40, $a, $0
+0004BCr 1  00 70 0B 00  .byte $0, $70, $b, $0
+0004C0r 1  00 50 2F 00  .byte $0, $50, $2f, $0
+0004C4r 1  00 70 2E 00  .byte $0, $70, $2e, $0
+0004C8r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004CCr 1  00 00 00 00  .byte $0, $0, $0, $0
+0004D0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004D4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004D8r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004DCr 1  00 00 00 00  .byte $0, $0, $0, $0
+0004E0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004E4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004E8r 1               
+0004E8r 1               GREEN_ORE_3:
+0004E8r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004ECr 1  00 00 00 00  .byte $0, $0, $0, $0
+0004F0r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004F4r 1  00 00 00 00  .byte $0, $0, $0, $0
+0004F8r 1  00 00 00 15  .byte $0, $0, $0, $15
+0004FCr 1  00 00 60 17  .byte $0, $0, $60, $17
+000500r 1  00 00 20 5F  .byte $0, $0, $20, $5f
+000504r 1  00 00 60 5D  .byte $0, $0, $60, $5d
+000508r 1  00 00 00 00  .byte $0, $0, $0, $0
+00050Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000510r 1  00 00 00 00  .byte $0, $0, $0, $0
+000514r 1  00 00 00 00  .byte $0, $0, $0, $0
+000518r 1  00 00 00 00  .byte $0, $0, $0, $0
+00051Cr 1  00 00 00 00  .byte $0, $0, $0, $0
+000520r 1  00 00 00 00  .byte $0, $0, $0, $0
+000524r 1  00 00 00 00  .byte $0, $0, $0, $0
+000527r 1               
